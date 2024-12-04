@@ -23,9 +23,9 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import jakarta.validation.Valid;
-import spring.message.common.model.MessageRequest;
-import spring.message.common.MessageType;
-import spring.message.common.model.MessageDocument;
+import spring.message.sql.message_sql.MessageType;
+import spring.message.sql.message_sql.model.MessageDocument;
+import spring.message.sql.message_sql.model.MessageRequest;
 import spring.message.sql.message_sql.model.OriginModel;
 import spring.message.sql.message_sql.repository.OriginRepository;
 

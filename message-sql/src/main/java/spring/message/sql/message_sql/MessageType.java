@@ -1,4 +1,4 @@
-package spring.message.common;
+package spring.message.sql.message_sql;
 
 public enum MessageType {
     TEXTO,

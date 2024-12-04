@@ -1,4 +1,4 @@
-package spring.message.common.model;
+package spring.message.sql.message_sql.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import spring.message.common.model.MessageDocument;
+import spring.message.sql.message_sql.model.MessageDocument;
 
 @RestController
 @RequestMapping("/api/messages")

@@ -37,8 +37,8 @@
     	</dependency>
 
 		<dependency>
-			<groupId>spring.message</groupId>
-			<artifactId>common</artifactId>
+			<groupId>spring.message.sql</groupId>
+			<artifactId>message-sql</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>

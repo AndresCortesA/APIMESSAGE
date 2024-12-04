@@ -12,8 +12,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.time.Instant;
 
-import spring.message.common.model.MessageDocument;
-import spring.message.common.model.MessageRequest;
+import spring.message.sql.message_sql.model.MessageDocument;
+import spring.message.sql.message_sql.model.MessageRequest;
 
 @Component
 public class ConsumerConfig {

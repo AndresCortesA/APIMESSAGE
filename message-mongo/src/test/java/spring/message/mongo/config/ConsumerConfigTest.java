@@ -16,9 +16,9 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import spring.message.common.MessageType;
-import spring.message.common.model.MessageDocument;
-import spring.message.common.model.MessageRequest;
+import spring.message.sql.message_sql.MessageType;
+import spring.message.sql.message_sql.model.MessageDocument;
+import spring.message.sql.message_sql.model.MessageRequest;
 
 public class ConsumerConfigTest {
 

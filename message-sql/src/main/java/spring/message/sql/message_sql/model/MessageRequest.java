@@ -1,8 +1,8 @@
-package spring.message.common.model;
+package spring.message.sql.message_sql.model;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
-import spring.message.common.MessageType;
+import spring.message.sql.message_sql.MessageType;
 
 public class MessageRequest {
     @NotEmpty(message = "El campo 'origin' no puede estar vacío")
