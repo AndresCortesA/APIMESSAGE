@@ -17,6 +17,7 @@
 	<url/>
 
 	<modules>
+		<module>message-api</module>
 		<module>message-sql</module>
 		<module>message-mongo</module>
 	</modules>
