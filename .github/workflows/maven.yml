@@ -1,4 +1,4 @@
-name: Java CI with Maven
+name: Test Java CI with Maven
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  test:
 
     runs-on: ubuntu-latest
 
@@ -29,8 +29,8 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
-    - name: Build and test message-sql module
-      run: mvn -B package --file pom.xml -pl message-sql
+    - name: Run tests for message-sql module
+      run: mvn -B test --file pom.xml -pl message-sql
 
-    - name: Build and test message-mongo module
-      run: mvn -B package --file pom.xml -pl message-mongo
+    - name: Run tests for message-mongo module
+      run: mvn -B test --file pom.xml -pl message-mongo
