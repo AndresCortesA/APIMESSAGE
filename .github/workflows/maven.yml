@@ -11,6 +11,20 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      mysql:
+        image: mysql:5.7
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: testdb
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping --silent"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=3
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -29,7 +43,21 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: Wait for MySQL to be ready
+      run: |
+        for i in {30..0}; do
+          if mysqladmin ping -h"127.0.0.1" --silent; then
+            break
+          fi
+          echo 'MySQL not ready yet...'
+          sleep 1
+        done
+
     - name: Run tests for message-sql module
+      env:
+        SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/testdb
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
       run: mvn -B test --file pom.xml -pl message-sql
 
     - name: Run tests for message-mongo module
