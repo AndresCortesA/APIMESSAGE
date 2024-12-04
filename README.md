@@ -1,6 +1,6 @@
 # Proyecto de Mensajería
 
-Este proyecto es una aplicación de mensajería que utiliza microservicios para enviar y procesar mensajes. La aplicación está compuesta por tres microservicios principales: `message-sql`, `message-mongo`.
+Este proyecto es una aplicación de mensajería que utiliza microservicios para enviar y procesar mensajes. La aplicación está compuesta por dos microservicios principales: `message-sql`, `message-mongo`.
 
 ## Estructura del Proyecto
 
