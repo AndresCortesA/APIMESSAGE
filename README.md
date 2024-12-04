@@ -151,3 +151,54 @@ En general, utilicé los siguientes patrones:
   - Configuración: `@Configuration`.
 
 Con este enfoque, me di cuenta que manejando un proyecto modular como lo es **message-api** y de este generando las dependencias para ser consumidas por los microservicios **message-mongo, message-sql**, me permite tener una construcción de una aplicación robusta y mantenible en cuanto a integración.
+
+## Componentes de la aplicacion orientadas a reducir carga operativa y reducir el minimo de recursos
+1. **Mensajería Asíncrona**:
+    - **RabbitMQ**: Utilizamos RabbitMQ para manejar la mensajería asíncrona, lo que permite procesar grandes volúmenes de mensajes sin bloquear las operaciones principales.
+2. **Escalabilidad Horizontal**:
+    - **Microservicios**: Se divide la aplicación en microservicios independientes que pueden escalarse horizontalmente según el punto 5 de los requisitos.
+3. **Optimización de la Base de Datos**:
+    - **Consulta Eficiente y simple**: tenemos una consultas SQL para reducir el tiempo de ejecución y el uso de recursos que es simple y al caso de utilizacion de las lineas disponibles.
+
+## Fase evolutiva de la solucion orientada a la refactorizacion
+1. **Mejora de la Seguridad**:
+    - **Implementación de OAuth2 o JWT**: Me gustaria migrar a un sistema de autenticación y autorización más robusto utilizando OAuth2 o JWT pero pora hora esta en basic auth.
+    - **Encriptación de Datos**: Implementar encriptación de datos sensibles tanto en tránsito como en reposo esta practica me requiere un tiempo debido a que estoy desactualizado en cuanto al funcionamiento de estos y la integración.
+
+## Estrategia de despliegue para optimizar y dar solucion (propuesta)
+
+Docker es una alternativa optima, se puede realizar una configuracion con contenedores utilizando docker-compose para una estrategia que me permita gestionar los recursos y el despliegue, utilizando una interfaz como portainer.
+
+## Mecanismo de seguridad
+
+se han implementado mecanismos de seguridad como la autenticación básica HTTP, el cifrado de contraseñas con BCrypt y la deshabilitación de CSRF para proteger la integridad y confidencialidad de los datos en la aplicación message-api. Estos mecanismos aseguran que solo los usuarios autenticados puedan acceder a los datos y que las contraseñas estén protegidas contra accesos no autorizados.
+
+## Monitorear el rendimiento y estabilidad con portainer (propuesta)
+
+Portainer es una herramienta óptima para gestionar y monitorear contenedores Docker. Proporcionandonos una interfaz gráfica de usuario (GUI) que facilita la administración de los recursos y el despliegue de la aplicación.
+
+Basicamente Portainer es una herramienta poderosa para monitorear el rendimiento y la estabilidad de la solución message-api. Proporciona una interfaz gráfica fácil de usar para gestionar contenedores Docker, visualizar el uso de recursos, acceder a logs y métricas, y asegurar la aplicación mediante la gestión de usuarios y políticas de seguridad. Utilizando Portainer, se puede asegurar que la solución opere de manera eficiente y estable en un entorno productivo.
+
+## ¿Cómo garantiza la escalabilidad de la solucion para grandes volumenes de trabajo?
+
+1. **Microservicios**: la aplicacion se divide en microservicios que facilitan escalar cada componente de maner independiente se gun los requisitos.
+
+2. **RabbitMQ**: Utilizamos RabbitMQ para manejar grandes volumenes de mensajes sin que bloquee la aplicacion segun la operatividad del consumer.
+
+## Pruebas para validar la solucion que cumpla con los requisitos funcionales
+
+1. **Workflows de CI/CD**:
+    - **GitHub Actions**: Se han configurado workflows de CI/CD en GitHub Actions para automatizar la ejecución de pruebas unitarias, de integración y de carga en cada commit y pull request. Esto asegura que cualquier cambio en el código sea validado automáticamente antes de ser fusionado en la rama principal.
+
+## Solucion facil de mantener y extender a futuro
+
+1. **Modularidad y Arquitectura**:
+    - **Inyección de Dependencias Spring Framework**: Se utiliza Spring para la inyección de dependencias, lo que facilita la prueba y el mantenimiento del código al desacoplar los componentes y permitir la sustitución de implementaciones.
+    Workflows de CI/CD:
+
+    - **GitHub Actions**: Configuración de workflows de CI/CD en GitHub Actions para automatizar la construcción, prueba y despliegue de la aplicación. Esto asegura que cualquier cambio en el código sea validado automáticamente antes de ser fusionado en la rama principal.
+
+    - **Patrones de Diseño**:
+        - **Patrones de Comportamiento**: Uso de patrones como Inyección de Dependencias (@Autowired, @Bean), Repository (@Repository), y Consumidor de Mensajes (@RabbitListener).
+        - **Patrones de Arquitectura**: Uso de patrones como Controlador (@Controller, @RequestMapping, @RestController) y Configuración (@Configuration).
+
