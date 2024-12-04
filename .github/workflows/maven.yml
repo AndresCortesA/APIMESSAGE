@@ -53,8 +53,12 @@ jobs:
           sleep 1
         done
 
-    - name: Build and install all modules
-      run: mvn -B install --file pom.xml
+    - name: Build and install message-sql module
+      env:
+        SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/testdb
+        SPRING_DATASOURCE_USERNAME: root
+        SPRING_DATASOURCE_PASSWORD: root
+      run: mvn -B install --file pom.xml -pl message-sql
 
     - name: Run tests for message-sql module
       env:
