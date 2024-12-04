@@ -25,16 +25,6 @@ jobs:
           --health-timeout=5s
           --health-retries=3
 
-      mongo:
-        image: mongo:4.4
-        ports:
-          - 27017:27017
-        options: >-
-          --health-cmd="mongo --eval 'db.runCommand({ ping: 1 })'"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -63,24 +53,12 @@ jobs:
           sleep 1
         done
 
-    - name: Wait for MongoDB to be ready
-      run: |
-        for i in {30..0}; do
-          if mongo --eval 'db.runCommand({ ping: 1 })'; then
-            break
-          fi
-          echo 'MongoDB not ready yet...'
-          sleep 1
-        done
+    - name: Build and install all modules
+      run: mvn -B install --file pom.xml
 
-    - name: Build and install message-sql module
+    - name: Run tests for message-sql module
       env:
         SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/testdb
         SPRING_DATASOURCE_USERNAME: root
         SPRING_DATASOURCE_PASSWORD: root
-      run: mvn -B install --file pom.xml -pl message-sql
-
-    - name: Run tests for message-mongo module
-      env:
-        SPRING_DATA_MONGODB_URI: mongodb://127.0.0.1:27017/testdb
-      run: mvn -B test --file pom.xml -pl message-mongo
+      run: mvn -B test --file pom.xml -pl message-sql
