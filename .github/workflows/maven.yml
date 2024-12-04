@@ -26,10 +26,10 @@ jobs:
           --health-retries=3
 
     steps:
-    - name: Checkout code
+    - name: Prueba de integridad de codigo
       uses: actions/checkout@v3
 
-    - name: Set up JDK 17
+    - name: Configurar JDK 17
       uses: actions/setup-java@v3
       with:
         java-version: '17'
@@ -53,14 +53,14 @@ jobs:
           sleep 1
         done
 
-    - name: Build and install message-sql module
+    - name: Crear y instalar message-sql module
       env:
         SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/testdb
         SPRING_DATASOURCE_USERNAME: root
         SPRING_DATASOURCE_PASSWORD: root
       run: mvn -B install --file pom.xml -pl message-sql
 
-    - name: Run tests for message-sql module
+    - name: Hacer pruebas para message-sql module
       env:
         SPRING_DATASOURCE_URL: jdbc:mysql://127.0.0.1:3306/testdb
         SPRING_DATASOURCE_USERNAME: root

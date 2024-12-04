@@ -1,12 +1,11 @@
 # Proyecto de Mensajería
 
-Este proyecto es una aplicación de mensajería que utiliza microservicios para enviar y procesar mensajes. La aplicación está compuesta por tres microservicios principales: `message-sql`, `message-mongo` y `common`.
+Este proyecto es una aplicación de mensajería que utiliza microservicios para enviar y procesar mensajes. La aplicación está compuesta por tres microservicios principales: `message-sql`, `message-mongo`.
 
 ## Estructura del Proyecto
 
 - `message-sql`: Microservicio que maneja las solicitudes REST y envía mensajes a través de RabbitMQ.
 - `message-mongo`: Microservicio que consume mensajes de RabbitMQ y los almacena en MongoDB.
-- `common`: Módulo común que contiene configuraciones y modelos compartidos entre los microservicios.
 
 ## Requisitos
 
@@ -111,7 +110,7 @@ La respuesta a una solicitud GET para consultar mensajes tendrá el siguiente fo
     }
 ]
 ```
-
+# PREGUNTAS [OPCIONALES]
 ## Requisitos No Funcionales Considerados
 
 1. **Seguridad**:
@@ -119,7 +118,7 @@ La respuesta a una solicitud GET para consultar mensajes tendrá el siguiente fo
     - **Protección CSRF**: Deshabilitación de CSRF para simplificar la configuración en un entorno de API REST.
 2. **Mantenibilidad**:
     - **Inyección de Dependencias**: Uso de Spring para la inyección de dependencias, lo que facilita la prueba y el mantenimiento del código.
-    - **Modularidad**: Separación del código en diferentes microservicios (message-sql, message-mongo, common) para mejorar la mantenibilidad y la escalabilidad.
+    - **Modularidad**: Separación del código en diferentes microservicios (message-sql, message-mongo) para mejorar la mantenibilidad y la escalabilidad.
 3. **Escalabilidad**:
     - **Microservicios**: Uso de una arquitectura de microservicios para permitir la escalabilidad horizontal.
     - **RabbitMQ**: Uso de RabbitMQ para la mensajería asíncrona, lo que permite manejar grandes volúmenes de mensajes de manera eficiente.
