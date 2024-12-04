@@ -19,8 +19,6 @@
 	<modules>
 		<module>message-sql</module>
 		<module>message-mongo</module>
-		<module>common</module>
-		<module>auth-server</module>
 	</modules>
 	
 	<licenses>
