@@ -35,7 +35,7 @@ public class MessageRequest {
     }
 
     public MessageType getMessageType() {
-        return messageType;
+        return this.messageType;
     }
 
     public void setMessageType(MessageType messageType) {

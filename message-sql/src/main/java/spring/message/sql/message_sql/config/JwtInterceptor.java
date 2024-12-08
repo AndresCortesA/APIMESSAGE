@@ -14,14 +14,12 @@ public class JwtInterceptor implements ClientHttpRequestInterceptor {
 
     @Override
     public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution) throws IOException {
-        // Aquí debes obtener el token JWT de alguna fuente segura
         String jwtToken = "Bearer " + getJwtToken();
         request.getHeaders().add(HttpHeaders.AUTHORIZATION, jwtToken);
         return execution.execute(request, body);
     }
 
     private String getJwtToken() {
-        // Implementa la lógica para obtener el token JWT
         return "your-jwt-token";
     }
 }
